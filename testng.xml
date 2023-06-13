@@ -4,11 +4,11 @@
   <test thread-count="5" name="Test">
     <classes>
 		
-      <class name="tests.CheckTitleTest">
-      <methods>
-		  <include name="searchAndAddToCart"/>
-		
-	  </methods>
+      <class name="tests.HomeTest">
+		  <methods>
+			   <include name="loginWithInvalidNumber"></include>
+			  
+		  </methods>
       </class>
     </classes>
   </test> <!-- Test -->
