@@ -38,7 +38,7 @@ public class HomePage extends CommonMethods {
 
 	public void searchProduct() throws Exception {
 		click("searchBox");
-		enterData("searchInputBox", "testData1");
+		enterData("searchInputBox", "searchText");
 		Thread.sleep(1000);
 	}
 
@@ -54,5 +54,6 @@ public class HomePage extends CommonMethods {
 		click("removeItemMinusButton");
 		verifyElementPresent("removedFromCartMessage");
 	}
+
 
 }

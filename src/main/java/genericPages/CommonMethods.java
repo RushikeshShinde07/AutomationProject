@@ -1,8 +1,12 @@
 package genericPages;
 
+import java.io.File;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
@@ -10,21 +14,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.text.Document;
-
-import org.openqa.selenium.JavascriptExecutor;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-
-//import org.apache.commons.io.FileUtils;
 
 public class CommonMethods extends MasterPage {
 
@@ -32,10 +24,9 @@ public class CommonMethods extends MasterPage {
 	public static ExtentReports reports = new ExtentReports("src\\main\\resources\\reports\\ExtentReport.html", false);
 
 	public CommonMethods() throws Exception {
-		// super();
 	}
 
-	// Initializing browser
+	// Initializing the browser
 	public void initializeBrowser() {
 
 		if (propConfig.getProperty("browser").equalsIgnoreCase("chrome")) {
@@ -55,7 +46,7 @@ public class CommonMethods extends MasterPage {
 		driver.get(propConfig.getProperty("url"));
 	}
 
-	// Click Method
+	// Click on the webelement
 	public void click(String locatorKey) {
 		try {
 			getWebElement(locatorKey).click();
@@ -68,19 +59,19 @@ public class CommonMethods extends MasterPage {
 
 	}
 
-	// Enter Data
+	// Enter the Data
 	public void enterData(String locatorKey, String testData) {
 		try {
 
 			getWebElement(locatorKey).sendKeys(propTestData.getProperty(testData));
-			test.log(LogStatus.PASS, "Enter the : " + locatorKey, "Enter the " + testData + " Successfully");
+			test.log(LogStatus.PASS, "Enter the : " + locatorKey, "Enter the text into " + testData + " Successfully");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL, "Enter the : " + locatorKey, "Failed to enter " + testData + e.getMessage());
 		}
 
 	}
 
-	// Clear Data
+	// Clear the Data
 	public void clearData(String locatorKey) {
 		try {
 			getWebElement(locatorKey).clear();
@@ -145,7 +136,7 @@ public class CommonMethods extends MasterPage {
 
 	}
 
-	// Take Screenshot
+	// Take a Screenshot
 	public String takeScreenShot(String imageName) throws Exception {
 		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String destLocation = System.getProperty("user.dir") + "\\src\\main\\resources\\reports\\screenshots\\"
@@ -155,7 +146,7 @@ public class CommonMethods extends MasterPage {
 		return "screenshots\\" + imageName + ".png";
 	}
 
-	// Select Dropdown values
+	// Select the dropdown values
 	public void selectDropdown(String locatorKey) {
 		try {
 			WebElement element = driver.findElement(By.xpath(propLocator.getProperty(locatorKey)));
@@ -182,25 +173,17 @@ public class CommonMethods extends MasterPage {
 
 	}
 
-	// Javascript executor
+	// Scroll down using javascript
 	public void scrollDown() {
-		// JavaScriptExecutor
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-
-		// Scroll down using javascript
 		jse.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
 	}
 
+	// Scroll till the Element
 	public void scrollTillElement(String locatorKey) throws Exception {
-		
-		// JavaScriptExecutor
-	//	WebElement element = getWebElement(locatorKey);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		scrollDown();
-		//jse.executeScript("arguments[0].scrollIntoView(true);", element);
-		//jse.executeScript("arguments[0].scrollIntoView(true);", getWebElement(locatorKey));
+		jse.executeScript("arguments[0].scrollIntoView(true);", locatorKey);
 	}
-	
 
 	// To get webelement
 	public WebElement getWebElement(String locatorKey) throws Exception {
@@ -249,15 +232,7 @@ public class CommonMethods extends MasterPage {
 		return elements;
 	}
 
-	public void getText(String locatorkey) {
-		try {
-			getWebElement(locatorkey).getText();
-
-		} catch (Exception e) {
-
-		}
-	}
-
+	// Verify element presence on webpage
 	public void verifyElementPresent(String locatorkey) throws Exception {
 		try {
 			getWebElement(locatorkey).isDisplayed();
@@ -269,6 +244,5 @@ public class CommonMethods extends MasterPage {
 					"Text '" + getWebElement(locatorkey).getText() + "' is not displayed");
 		}
 	}
-	
 
 }
