@@ -1,11 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>mamaearthSampleProject</groupId>
-  <artifactId>mamaearthSampleProject</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>mamaearthSampleProject</name>
-  <description>mamaearthSampleProject</description>
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>mamaearthSampleProject</groupId>
+	<artifactId>mamaearthSampleProject</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>mamaearthSampleProject</name>
+	<description>mamaearthSampleProject</description>
+	<dependencies>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
@@ -25,7 +27,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>4.8.1</version>
+			<version>3.141.59</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -34,7 +36,7 @@
 			<artifactId>testng</artifactId>
 			<version>7.7.1</version>
 		</dependency>
-	
+
 		<!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports -->
 		<dependency>
 			<groupId>com.relevantcodes</groupId>

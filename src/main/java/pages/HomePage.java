@@ -14,25 +14,25 @@ public class HomePage extends CommonMethods {
 
 	public void verifyHairPageTitle() throws Exception {
 		click("hairMenu");
-		Thread.sleep(1000);
+		waitForElementToBeVisible("hairPageTitle",10);
 		verifyElementPresent("hairPageTitle");
 	}
 
 	public void verifyFacePageTitle() throws Exception {
 		click("faceMenu");
-		Thread.sleep(1000);
+		waitForElementToBeVisible("facePageTitle",10);
 		verifyElementPresent("facePageTitle");
 	}
 
 	public void verifyBodyPageTitle() throws Exception {
 		click("bodyMenu");
-		Thread.sleep(1000);
+		waitForElementToBeVisible("bodyPageTitle", 10);
 		verifyElementPresent("bodyPageTitle");
 	}
 
 	public void verifyMakeupPageTitle() throws Exception {
 		click("makeupMenu");
-		Thread.sleep(1000);
+		waitForElementToBeVisible("makeupPageTitle", 10);
 		verifyElementPresent("makeupPageTitle");
 	}
 
@@ -44,6 +44,7 @@ public class HomePage extends CommonMethods {
 
 	public void addToCart() throws Exception {
 		scrollDown();
+		waitForElementToBeVisible("addToCartButton", 10);
 		click("addToCartButton");
 		verifyElementPresent("saveToCartDisplayMessage");
 		click("addToCartLogo");
