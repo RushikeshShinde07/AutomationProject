@@ -1,6 +1,7 @@
 package genericPages;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
@@ -13,7 +14,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -243,6 +246,31 @@ public class CommonMethods extends MasterPage {
 			test.log(LogStatus.FAIL, "Verify element presence: " + locatorkey,
 					"Text '" + getWebElement(locatorkey).getText() + "' is not displayed");
 		}
+	}
+	
+	// Implements Implicit Wait
+	public void implementImplicitWait(String locatorKey, long timeout) {
+		driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+	}
+	
+	// Implements Explicit Wait for element to be visible
+	public void waitForElementToBeVisible(String locatorKey, long timeout) throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, timeout);
+		wait.until(ExpectedConditions.visibilityOf(getWebElement(locatorKey)));
+	}
+	
+	// Implements Explicit wait for element to be clickable
+	public void waitForElementToBeClickable(String locatorKey, long timeout) throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, timeout);
+		wait.until(ExpectedConditions.elementToBeClickable(getWebElement(locatorKey)));
+		
+	}
+	
+	// To highlight element while locating
+	public void highlightAnElement(String locatorKey) throws Exception {
+		WebElement highlightText = driver.findElement((By) getWebElement(locatorKey));
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].setAttribute('style', 'border:2px solid yellow')", highlightText);
 	}
 
 }
